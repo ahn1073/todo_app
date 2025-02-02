@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "402472406262",
+    "project_id": "bucketlistwithfb-1c4ff",
+    "storage_bucket": "bucketlistwithfb-1c4ff.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402472406262:android:17729b3b569f690b11b0d7",
+        "android_client_info": {
+          "package_name": "com.example.todo_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIQYZh88Ozp48bU65LsNfZJDooEGxXro4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
