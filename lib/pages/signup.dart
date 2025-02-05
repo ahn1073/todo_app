@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import '/widget/images.dart';
 import '/widget/form.dart';
 
-class Login extends StatefulWidget {
-  final VoidCallback show;
-
-  const Login(this.show, {super.key});
+class Signup extends StatefulWidget {
+  final VoidCallback show; // 이것을 사용한다.
+  const Signup(this.show, {super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final passwordConfirmController = TextEditingController();
 
   final FocusNode emailFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
+  final FocusNode passwordConfirmFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -30,6 +31,10 @@ class _LoginState extends State<Login> {
 
     // 비밀번호 포커스 상태 변경 감지
     passwordFocusNode.addListener(() {
+      setState(() {}); // 포커스 상태 변경시 화면 갱신
+    });
+
+    passwordConfirmFocusNode.addListener(() {
       setState(() {}); // 포커스 상태 변경시 화면 갱신
     });
   }
@@ -48,9 +53,13 @@ class _LoginState extends State<Login> {
               input('Password', Icons.password, passwordController,
                   passwordFocusNode),
               SizedBox(height: 10),
-              account('Don\'t have an account?', 'Sign Up', widget.show),
+              input('Confirm Password', Icons.password,
+                  passwordConfirmController, passwordConfirmFocusNode),
               SizedBox(height: 10),
-              loginButton(emailController.text, passwordController.text),
+              account('Have an account?', 'Login', widget.show),
+              SizedBox(height: 10),
+              signupButton(emailController.text, passwordController.text,
+                  passwordConfirmController.text),
               SizedBox(height: 10),
             ],
           ),

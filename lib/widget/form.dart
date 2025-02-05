@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import '/data/auth_data.dart';
 import '../consts/consts.dart';
 
-Padding loginButton() {
+// 아래를 반영하여 로그인 버튼 인자를 바꿀것것
+Padding loginButton(email, password) {
   return Padding(
     padding: paddingSameWidget_Hor,
     child: Container(
@@ -10,34 +12,71 @@ Padding loginButton() {
       height: 50,
       decoration: BoxDecoration(
           color: focusedColor, borderRadius: BorderRadius.circular(10)),
-      child: Text(
-        'LogIn',
-        style: TextStyle(
-            color: Colors.white,
-            fontSize: fsWidget,
-            fontWeight: FontWeight.bold),
+      child: GestureDetector(
+        onTap: () async {
+          // AuthenticationRemote의 인스턴스를 생성하고, 그 인스턴스에서 login 메서드 호출
+          AuthenticationRemote authRemote = AuthenticationRemote();
+          await authRemote.login(email, password); // async로 호출
+        },
+        child: Text(
+          'LogIn',
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: fsWidget,
+              fontWeight: FontWeight.bold),
+        ),
       ),
     ),
   );
 }
 
-Padding account() {
+// 아래를 반영하여 로그인 버튼 인자를 바꿀것것
+Padding signupButton(email, password, passwordConfirm) {
+  return Padding(
+    padding: paddingSameWidget_Hor,
+    child: Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      height: 50,
+      decoration: BoxDecoration(
+          color: focusedColor, borderRadius: BorderRadius.circular(10)),
+      child: GestureDetector(
+        onTap: () async {
+          await AuthenticationRemote()
+              .register(email, password, passwordConfirm);
+        },
+        child: Text(
+          'SignUp',
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: fsWidget,
+              fontWeight: FontWeight.bold),
+        ),
+      ),
+    ),
+  );
+}
+
+Padding account(text1, text2, show) {
   return Padding(
     padding: paddingSameWidget_Hor,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          'Don\'t have an account?',
+          text1,
           style: TextStyle(fontSize: fsText, color: Colors.grey[700]),
         ),
         SizedBox(width: 5),
-        Text(
-          'Sign Up',
-          style: TextStyle(
-              fontSize: fsText,
-              color: Colors.blue,
-              fontWeight: FontWeight.bold),
+        GestureDetector(
+          onTap: show, // Sign Up 을 클릭했을때  show 함수를 호출출
+          child: Text(
+            text2,
+            style: TextStyle(
+                fontSize: fsText,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold),
+          ),
         ),
       ],
     ),
